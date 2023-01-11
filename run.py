@@ -12,5 +12,24 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('timed_type_test_questions')
 
-questions = SHEET.worksheet('questions')
-data = questions.get_all_values()
+
+def get_question(user_difficulty):
+    """
+    Get a question from the Google Sheet, based on the difficulty selected by
+    the user.
+    """
+
+    # Dictionary to pair column numbers with difficulty
+    question_difficulty = {'easy': 1, 'hard': 2}
+
+    # Store the worksheet as a variable
+    questions = SHEET.worksheet('questions')
+
+    # Get the question from the correct difficulty, specified by the user
+    question = questions.col_values(question_difficulty[user_difficulty])
+
+    return question
+
+
+user_question = get_question('hard')
+print(user_question)
