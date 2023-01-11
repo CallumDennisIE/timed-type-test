@@ -26,7 +26,8 @@ def get_question(user_difficulty):
     questions = SHEET.worksheet('questions')
 
     # Get the question from the correct difficulty, specified by the user
-    question = questions.col_values(question_difficulty[user_difficulty])
+    # Currently only taking the first non-header value in the column
+    question = questions.col_values(question_difficulty[user_difficulty])[1]
 
     return question
 
@@ -45,7 +46,6 @@ def get_input(question):
 
 
 user_question = get_question('easy')
-print(user_question)
 
 user_input = get_input(user_question)
 print(user_input)
