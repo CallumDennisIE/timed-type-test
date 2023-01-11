@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from difflib import SequenceMatcher
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -45,7 +46,27 @@ def get_input(question):
     return answer
 
 
-user_question = get_question('easy')
+def calculate_accuracy(question, answer):
+    """
+    Calculate the similarity of the question and the answer and return as a
+    percentage
+    """
+
+    # Calculate Similarity
+    similarity = SequenceMatcher(lambda x: x == " ", question, answer)
+
+    # Get the similarity score as a decimal
+    decimal = similarity.ratio()
+
+    # Convert the decimal to a percentage
+    percentage = round(decimal * 100, 2)
+
+    return percentage
+
+
+user_question = get_question('hard')
 
 user_input = get_input(user_question)
-print(user_input)
+
+accuracy = calculate_accuracy(user_question, user_input)
+print(accuracy)
