@@ -31,5 +31,21 @@ def get_question(user_difficulty):
     return question
 
 
-user_question = get_question('hard')
+def get_input(question):
+    """
+    Ask the user to input the question and return the result
+    """
+
+    print("Type the following question, as quick as possible:")
+    print(question)
+    print()
+    answer = input("Type here:\n")
+
+    return answer
+
+
+user_question = get_question('easy')
 print(user_question)
+
+user_input = get_input(user_question)
+print(user_input)
