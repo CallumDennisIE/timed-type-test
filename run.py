@@ -1,4 +1,5 @@
 import gspread
+import time
 from google.oauth2.service_account import Credentials
 from difflib import SequenceMatcher
 
@@ -64,9 +65,42 @@ def calculate_accuracy(question, answer):
     return percentage
 
 
+def calculate_speed(start_time, answer_time, max_time):
+    # Calculate time taken to answer the question
+    time_taken = answer_time - start_time
+    
+    # Round the seconds taken to the nearest full second
+    time_taken = round(time_taken)
+    
+    time_left = max_time - time_taken
+    
+    # Calculate the percentage of time taken from max time
+    speed = round((time_taken / max_time) * 100, 2)
+    
+    # Reverse the percentage to get score out of 100
+    speed = 100 - speed
+    
+    return speed, time_taken, time_left
+
+
+max_time = 30
 user_question = get_question('hard')
+
+# The time before the question was asked
+start_time = time.time()
+print(f'Start time {start_time}')
 
 user_input = get_input(user_question)
 
+# The time after the question was asked
+answer_time = time.time()
+print(f'Answer time {answer_time}')
+
 accuracy = calculate_accuracy(user_question, user_input)
 print(accuracy)
+
+speed, time_taken, time_left = calculate_speed(start_time, answer_time,
+                                               max_time)
+print(speed)
+print(time_taken)
+print(time_left)
