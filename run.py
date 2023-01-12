@@ -22,6 +22,8 @@ class Game:
 
     def __init__(self, max_time):
         self.max_time = max_time
+        self.start_time = None
+        self.answer_time = None
 
     def get_question(self, user_difficulty):
         """
@@ -47,11 +49,16 @@ class Game:
         Ask the user to input the question and return the result
         """
 
+        # The time before the question was asked
+        self.start_time = time.time()
+
         print("Type the following question, as quick as possible:")
         print(question)
         print()
         answer = input("Type here:\n")
 
+        # The time after the question was asked
+        self.answer_time = time.time()
         return answer
 
     def calculate_accuracy(self, question, answer):
@@ -71,21 +78,21 @@ class Game:
 
         return percentage
 
-    def calculate_speed(self, start_time, answer_time):
+    def calculate_speed(self):
         """
         Calculate the speed of the users answer, using the start and answer 
         time, then calculate the time remainign from the maxium time.
         """
         # Calculate time taken to answer the question
-        time_taken = answer_time - start_time
+        time_taken = self.answer_time - self.start_time
 
         # Round the seconds taken to the nearest full second
         time_taken = round(time_taken)
 
-        time_left = max_time - time_taken
+        time_left = self.max_time - time_taken
 
         # Calculate the percentage of time taken from max time
-        speed = round((time_taken / max_time) * 100, 2)
+        speed = round((time_taken / self.max_time) * 100, 2)
 
         # Reverse the percentage to get score out of 100
         speed = 100 - speed
@@ -104,23 +111,15 @@ class Game:
         print(f"\nAccuracy: {accuracy}%")
 
 
-max_time = 30
-new_game = Game(max_time)
+new_game = Game(30)
 
 user_question = new_game.get_question('hard')
 
-# The time before the question was asked
-start_time = time.time()
-
 user_input = new_game.get_input(user_question)
-
-# The time after the question was asked
-answer_time = time.time()
 
 accuracy = new_game.calculate_accuracy(user_question, user_input)
 
-speed, time_taken, time_left = new_game.calculate_speed(start_time, 
-                                                        answer_time)
+speed, time_taken, time_left = new_game.calculate_speed()
 
 new_game.output_results(user_question, user_input, time_left, time_taken, 
                         speed, accuracy)
