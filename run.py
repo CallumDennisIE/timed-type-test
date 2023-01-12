@@ -66,6 +66,10 @@ def calculate_accuracy(question, answer):
 
 
 def calculate_speed(start_time, answer_time, max_time):
+    """
+    Calculate the speed of the users answer, using the start and answer time,
+    then calculate the time remainign from the maxium time.
+    """
     # Calculate time taken to answer the question
     time_taken = answer_time - start_time
     
