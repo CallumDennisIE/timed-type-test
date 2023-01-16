@@ -24,6 +24,52 @@ class Game:
         self.max_time = max_time
         self.start_time = None
         self.answer_time = None
+        self.menu_options = {'play': '1',
+                             'add': '2', 
+                             'exit': '3'}
+
+    def play_menu(self):
+        """Displays the menu at game start and asks for user input.
+
+        Returns:
+            menu_input (string): The users option selected on the menu.
+        """
+        valid = False
+
+        while valid is False:
+            print("Timed Type Test Menu:")
+            
+            for option in self.menu_options:
+                print(f"{self.menu_options[option]}) {option.capitalize()}")
+
+            menu_input = input("Enter your menu option:\n")
+
+            valid = self.validate_menu(menu_input)
+            if valid is False:
+                print("Please enter a valid option on the menu\n")
+
+        return menu_input
+
+    def validate_menu(self, user_input):
+        """Validates the users input on the starting menu, 
+        checks to see if the value is one of the availble options.
+
+        Args:
+            user_input (user_input): The option selected by the user on the
+            starting menu
+
+        Returns:
+            valid (bool): A boolean, if the value is a vlid value or not.
+        """
+
+        # Validate if the user input is a valid option.
+        if user_input.lower() in self.menu_options or user_input in \
+                self.menu_options.values():
+            valid = True
+        else:
+            valid = False
+
+        return valid
 
     def get_question(self, user_difficulty):
         """Get a question from the Google Sheet, based on the difficulty
@@ -149,6 +195,8 @@ class Game:
 
 
 new_game = Game(30)
+
+new_game.play_menu()
 
 user_question = new_game.get_question('hard')
 
