@@ -26,9 +26,15 @@ class Game:
         self.answer_time = None
 
     def get_question(self, user_difficulty):
-        """
-        Get a question from the Google Sheet, based on the difficulty selected 
-        by the user.
+        """Get a question from the Google Sheet, based on the difficulty
+        selected by the user.
+
+        Args:
+            user_difficulty (string): The difficulty that the user sets
+            the game to.
+
+        Returns:
+            question (string): A question from the Google Sheet
         """
 
         # Dictionary to pair column numbers with difficulty
@@ -45,8 +51,14 @@ class Game:
         return question
 
     def get_input(self, question):
-        """
-        Ask the user to input the question and return the result
+        """Ask the user to input the question and return the result.
+
+        Args:
+            question (string): The value will be output to the user, for them
+            to copy.
+
+        Returns:
+            answer (string): The users answer to the question argument.
         """
 
         # The time before the question was asked
@@ -62,9 +74,18 @@ class Game:
         return answer
 
     def calculate_accuracy(self, question, answer):
-        """
-        Calculate the similarity of the question and the answer and return as a
-        percentage
+        """Calculate the similarity of the question and the answer and return
+        as a percentage.
+
+        Args:
+            question (string): The question that will have the answer tested
+            against it, to calculate the similarirty.
+            answer (string): The value that will be tested against the
+            question, to calculate the similarity.
+
+        Returns:
+            percentage (float): The percentage value of the similarity between
+            the provided question and answer.
         """
 
         # Calculate Similarity
@@ -79,9 +100,15 @@ class Game:
         return percentage
 
     def calculate_speed(self):
-        """
-        Calculate the speed of the users answer, using the start and answer 
+        """Calculate the speed of the users answer, using the start and answer
         time, then calculate the time remainign from the maxium time.
+
+        Returns:
+            speed (float): The percentage value of the time taken divided by
+            the maximum time.
+            the provided question and answer
+            time_taken (int): The time the user took to answer the question.
+            time_left (int): The time taken subtracted from the max time.
         """
         # Calculate time taken to answer the question
         time_taken = self.answer_time - self.start_time
@@ -101,8 +128,18 @@ class Game:
 
     def output_results(self, question, answer, time_left, time_taken, speed, 
                        accuracy):
-        """
-        Output the game results that are passed in.
+        """Output the game results that are passed in.
+
+        Args:
+            question (string): The question from the google Sheet, that the
+            user had to answer.
+            answer (string): The users answer to the question argument.
+            time_left (int): The time taken subtracted from the max time.
+            time_taken (int): The time the user took to answer the question.
+            speed (float): The percentage value of the time taken divided by
+            the maximum time.
+            accuracy (float): The percentage value of the similarity between
+            the provided question and answer.
         """
         print(f"\nQuestion: {question}\nAnswer: {answer}\n")
         print(f"Time left: {time_left} Seconds")
