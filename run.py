@@ -34,11 +34,28 @@ class Game:
 
         Args:
             options (dict): A dictionary of options availble to the user.
-            The key is a string indicating the option name. 
+            The key is a string indicating the option name.
             The value is the correponding number.
         """
         for option in options:
             print(f"{options[option]}) {option.capitalize()}")
+
+    def validate_options(self, options, option_input):
+        """Validates input to see if it is in the options dictionary.
+
+        Args:
+            options (dict): A dictionary of options, to be validated against.
+            option_input (string): A value to test if in the options
+            dictionary.
+
+        Returns:
+            bool: If the input value is in the options dictionary.
+        """
+        if option_input.lower() in options or option_input in \
+                options.values():
+            return True
+
+        return False
 
     def play_menu(self):
         """Displays the menu at game start and asks for user input.
@@ -55,34 +72,15 @@ class Game:
 
             menu_input = input("Enter your menu option:\n")
 
-            valid = self.validate_menu(menu_input)
+            valid = self.validate_options(self.menu_options, menu_input)
             if not valid:
                 print("Please enter a valid option on the menu\n")
 
         if menu_input == "play" or menu_input == "1":
 
-            print(self.get_difficulty())
+            self.get_difficulty()
 
         return menu_input
-
-    def validate_menu(self, user_input):
-        """Validates the users input on the starting menu, 
-        checks to see if the value is one of the availble options.
-
-        Args:
-            user_input (user_input): The option selected by the user on the
-            starting menu
-
-        Returns:
-            valid (bool): A boolean, if the value is a vlid value or not.
-        """
-
-        # Validate if the user input is a valid option.
-        if user_input.lower() in self.menu_options or user_input in \
-                self.menu_options.values():
-            return True
-
-        return False
 
     def get_difficulty(self):
         """Displays the possible difficulty options to the user and gets the
@@ -93,9 +91,16 @@ class Game:
         """
         print("\nGame Difficulty:")
 
-        self.output_options(self.difficulty_options)
+        valid = False
+        while not valid:
+            self.output_options(self.difficulty_options)
 
-        difficulty = input("Please enter the game difficulty:\n")
+            difficulty = input("Please enter the game difficulty:\n")
+
+            valid = self.validate_options(self.difficulty_options, difficulty)
+
+            if not valid:
+                print("Please enter a valid difficulty\n")
 
         return difficulty
 
