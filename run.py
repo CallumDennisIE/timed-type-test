@@ -77,10 +77,27 @@ class Game:
                 print("Please enter a valid option on the menu\n")
 
         if menu_input == "play" or menu_input == "1":
-
-            self.get_difficulty()
+            self.play_game()
 
         return menu_input
+
+    def play_game(self):
+        """Calls all the necessary functions to play the game.
+        """
+        game_difficulty = self.get_difficulty()
+
+        print(game_difficulty)
+
+        user_question = self.get_question(game_difficulty)
+
+        user_input = self.get_input(user_question)
+
+        accuracy = self.calculate_accuracy(user_question, user_input)
+
+        speed, time_taken, time_left = self.calculate_speed()
+
+        self.output_results(user_question, user_input, time_left, time_taken,
+                            speed, accuracy)
 
     def get_difficulty(self):
         """Displays the possible difficulty options to the user and gets the
@@ -227,16 +244,4 @@ class Game:
 
 
 new_game = Game(30)
-
 new_game.play_menu()
-
-user_question = new_game.get_question('hard')
-
-user_input = new_game.get_input(user_question)
-
-accuracy = new_game.calculate_accuracy(user_question, user_input)
-
-speed, time_taken, time_left = new_game.calculate_speed()
-
-new_game.output_results(user_question, user_input, time_left, time_taken, 
-                        speed, accuracy)
