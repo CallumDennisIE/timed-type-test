@@ -27,6 +27,7 @@ class Game:
         self.menu_options = {'play': '1',
                              'add': '2', 
                              'exit': '3'}
+        self.difficulty_options = {'easy': '1', 'hard': '2'}
 
     def play_menu(self):
         """Displays the menu at game start and asks for user input.
@@ -48,6 +49,10 @@ class Game:
             if not valid:
                 print("Please enter a valid option on the menu\n")
 
+        if menu_input == "play" or menu_input == "1":
+
+            print(self.get_difficulty())
+
         return menu_input
 
     def validate_menu(self, user_input):
@@ -68,6 +73,16 @@ class Game:
             return True
 
         return False
+
+    def get_difficulty(self):
+        print("\nGame Difficulty:")
+
+        for option in self.difficulty_options:
+            print(f"{self.difficulty_options[option]}) {option.capitalize()}")
+
+        difficulty = input("Please enter the game difficulty:\n")
+
+        return difficulty
 
     def get_question(self, user_difficulty):
         """Get a question from the Google Sheet, based on the difficulty
