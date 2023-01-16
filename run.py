@@ -29,6 +29,17 @@ class Game:
                              'exit': '3'}
         self.difficulty_options = {'easy': '1', 'hard': '2'}
 
+    def output_options(self, options):
+        """Displays the selections availble to a user
+
+        Args:
+            options (dict): A dictionary of options availble to the user.
+            The key is a string indicating the option name. 
+            The value is the correponding number.
+        """
+        for option in options:
+            print(f"{options[option]}) {option.capitalize()}")
+
     def play_menu(self):
         """Displays the menu at game start and asks for user input.
 
@@ -39,9 +50,8 @@ class Game:
 
         while not valid:
             print("Timed Type Test Menu:")
-            
-            for option in self.menu_options:
-                print(f"{self.menu_options[option]}) {option.capitalize()}")
+
+            self.output_options(self.menu_options)
 
             menu_input = input("Enter your menu option:\n")
 
@@ -77,8 +87,7 @@ class Game:
     def get_difficulty(self):
         print("\nGame Difficulty:")
 
-        for option in self.difficulty_options:
-            print(f"{self.difficulty_options[option]}) {option.capitalize()}")
+        self.output_options(self.difficulty_options)
 
         difficulty = input("Please enter the game difficulty:\n")
 
