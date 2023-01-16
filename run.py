@@ -36,7 +36,7 @@ class Game:
         """
         valid = False
 
-        while valid is False:
+        while not valid:
             print("Timed Type Test Menu:")
             
             for option in self.menu_options:
@@ -45,7 +45,7 @@ class Game:
             menu_input = input("Enter your menu option:\n")
 
             valid = self.validate_menu(menu_input)
-            if valid is False:
+            if not valid:
                 print("Please enter a valid option on the menu\n")
 
         return menu_input
@@ -65,11 +65,9 @@ class Game:
         # Validate if the user input is a valid option.
         if user_input.lower() in self.menu_options or user_input in \
                 self.menu_options.values():
-            valid = True
-        else:
-            valid = False
+            return True
 
-        return valid
+        return False
 
     def get_question(self, user_difficulty):
         """Get a question from the Google Sheet, based on the difficulty
@@ -152,7 +150,6 @@ class Game:
         Returns:
             speed (float): The percentage value of the time taken divided by
             the maximum time.
-            the provided question and answer
             time_taken (int): The time the user took to answer the question.
             time_left (int): The time taken subtracted from the max time.
         """
