@@ -85,6 +85,12 @@ class Game:
         return False
 
     def get_difficulty(self):
+        """Displays the possible difficulty options to the user and gets the
+        users input
+
+        Returns:
+            difficulty (string): The difficulty selected by the user.
+        """
         print("\nGame Difficulty:")
 
         self.output_options(self.difficulty_options)
