@@ -24,21 +24,22 @@ class Game:
         self.max_time = max_time
         self.start_time = None
         self.answer_time = None
-        self.menu_options = {'play': '1',
-                             'add': '2', 
-                             'exit': '3'}
-        self.difficulty_options = {'easy': '1', 'hard': '2'}
+        self.menu_options = {'1': 'play',
+                             '2': 'add', 
+                             '3': 'exit'}
+        self.difficulty_options = {'1': 'easy', '2': 'hard'}
 
     def output_options(self, options):
         """Displays the selections availble to a user
 
         Args:
             options (dict): A dictionary of options availble to the user.
-            The key is a string indicating the option name.
-            The value is the correponding number.
+            The key is the order of the option.
+            The value a string indicating the option name.
+            
         """
         for option in options:
-            print(f"{options[option]}) {option.capitalize()}")
+            print(f"{option}) {options[option].capitalize()}")
 
     def validate_options(self, options, option_input):
         """Validates input to see if it is in the options dictionary.
@@ -51,8 +52,8 @@ class Game:
         Returns:
             bool: If the input value is in the options dictionary.
         """
-        if option_input.lower() in options or option_input in \
-                options.values():
+        if option_input.lower() in options.values() or option_input in \
+                options:
             return True
 
         return False
@@ -70,7 +71,7 @@ class Game:
 
             self.output_options(self.menu_options)
 
-            menu_input = input("Enter your menu option:\n")
+            menu_input = input("Enter your menu option:\n").lower()
 
             valid = self.validate_options(self.menu_options, menu_input)
             if not valid:
@@ -88,7 +89,8 @@ class Game:
 
         print(game_difficulty)
 
-        user_question = self.get_question(game_difficulty)
+        user_question = self.get_question(
+            self.difficulty_options[game_difficulty])
 
         user_input = self.get_input(user_question)
 
