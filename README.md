@@ -48,6 +48,18 @@ A flowchart was created in this project to plan out the possible functions that 
 [Back to top!](#timed-type-test)
 
 ## Features
+
+### Menu:
+The project uses a menu system that allows users to select between playing the game, adding a question to the avaible questions or exiting the code.
+
+### Add a Question:
+The user can add a question to the Google Sheet, allowing them to then play that question later in the game. The user will be asked for the difficulty of the question and then asked to input their question. This will then be added to the next row of the difficulty column in the Google Sheet.
+
+### Play the game:
+When the user plays the game, they are asked which game difficulty they would like to play. This decides which column of questions is taken from the Google Sheets. The game will then start 3 rounds of the game, if there is not enough questions in the selected diffculty, the user will be prompted to add more questions to play.
+
+If there is enough questions, then a sentence will be diplayed to the user, the user will have to input the provided sentence as accuratley and as quick as possible. The score out of 100 is shown for both accuracy and speed on all questions, as well as the time taken and the time left.
+
 [Back to top!](#timed-type-test)
 
 ## Technologies Used
