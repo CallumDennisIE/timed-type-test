@@ -82,7 +82,7 @@ class Game:
         if menu_input == "1":
             self.play_game()
         elif menu_input == "2":
-            self.get_input_question()
+            self.add_question()
 
         return menu_input
 
@@ -102,25 +102,51 @@ class Game:
         self.output_results(user_question, user_input, time_left, time_taken,
                             speed, accuracy)
 
-    def get_input_question(self):
-        """ Gets the selected diffculty and question from the user and updates
-        the Google Sheet
+    def add_question(self):
+        """Calls all the necessary functions to add a question.
         """
-        questions = SHEET.worksheet('questions')
+        input_question, input_difficulty = self.get_input_question()
+
+        self.add_input_question(input_question, input_difficulty)
+
+    def get_input_question(self):
+        """Gets the selected difficulty and the question that the user would
+        like to input and returns them.
+
+        Returns:
+            user_question (string): The question that the user wants to add to
+            the existing questions.
+            difficulty (int): A number, corresponding to the selected
+            difficulty
+        """
 
         print("Which difficulty question are you adding:\n")
         difficulty = self.get_difficulty()
 
+        user_question = input(
+            'Please enter the question you would like to add: \n')
+
+        return user_question, difficulty
+
+    def add_input_question(self, question, difficulty):
+        """ Updates the Google Sheet, with the question in the correct column,
+        depending on difficulty
+
+        Args:
+            question (string): The question that the user wants to add to
+            the existing questions.
+            difficulty (int): A number, corresponding to the selected
+            difficulty
+        """
+
+        questions = SHEET.worksheet('questions')
         # The column number is equal to the difficulty number value
         column = difficulty
 
         # Row is length of the selected column + 1, to include the difficulty
         row = len(questions.col_values(column)) + 1
 
-        user_question = input(
-            'Please enter the question you would like to add: \n')
-
-        questions.update_cell(row, column, user_question)
+        questions.update_cell(row, column, question)
 
     def get_difficulty(self):
         """Displays the possible difficulty options to the user and gets the
