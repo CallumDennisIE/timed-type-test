@@ -36,7 +36,7 @@ class Game:
             options (dict): A dictionary of options availble to the user.
             The key is the order of the option.
             The value a string indicating the option name.
-            
+
         """
         for option in options:
             print(f"{option}) {options[option].capitalize()}")
@@ -81,8 +81,8 @@ class Game:
 
         if menu_input == "1":
             self.play_game()
-        # elif menu_input == "2":
-            # self.get_input_question()
+        elif menu_input == "2":
+            self.get_input_question()
 
         return menu_input
 
@@ -90,8 +90,6 @@ class Game:
         """Calls all the necessary functions to play the game.
         """
         game_difficulty = self.get_difficulty()
-
-        print(f'difficulty {game_difficulty}')
 
         user_question = self.get_question(game_difficulty)
 
@@ -104,22 +102,26 @@ class Game:
         self.output_results(user_question, user_input, time_left, time_taken,
                             speed, accuracy)
 
-    """
     def get_input_question(self):
+        """ Gets the selected diffculty and question from the user and updates
+        the Google Sheet
+        """
         questions = SHEET.worksheet('questions')
 
         print("Which difficulty question are you adding:\n")
         difficulty = self.get_difficulty()
-        print(difficulty)
 
-        # row = current length of column
-        row = 1
+        # The column number is equal to the difficulty number value
+        column = difficulty
 
-        # column = difficulty value either 1 or 2
-        column = 2
+        # Row is length of the selected column + 1, to include the difficulty
+        row = len(questions.col_values(column)) + 1
 
-        # questions.update_cell(row, column, 'Bingo!')
-"""
+        user_question = input(
+            'Please enter the question you would like to add: \n')
+
+        questions.update_cell(row, column, user_question)
+
     def get_difficulty(self):
         """Displays the possible difficulty options to the user and gets the
         users input
@@ -137,8 +139,6 @@ class Game:
             difficulty = input("Please enter the game difficulty:\n")
 
             valid = self.validate_options(self.difficulty_options, difficulty)
-
-            print(f'valid {valid}')
 
             if not valid:
                 print("Please enter a valid difficulty\n")
@@ -161,13 +161,10 @@ class Game:
 
         # Store the worksheet as a variable
         questions = SHEET.worksheet('questions')
-        print(f'user_difficulty {user_difficulty}')
 
         # Get the question from the correct difficulty, specified by the user
         # Currently only taking the first non-header value in the column
         question = questions.col_values(user_difficulty)[1]
-
-        print(question)
        
         return question
 
