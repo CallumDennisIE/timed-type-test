@@ -18,6 +18,8 @@
     * [Media](#media)
 
 ## About
+Timed Type Test is a typing game, aimed at people that want to improve their typing skills. The game shows the user a sentence, the user then has to input the sentence as accuratley as they can and as quick as possible. The game has different difficulties and will show the users speed and accuracy scores. Timed Type Test also allows users to add their own sentences, to increase replayability.
+
 [View the live project here.](https://timed-type-test.herokuapp.com/)
 
 [Back to top!](#timed-type-test)
