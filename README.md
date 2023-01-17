@@ -65,6 +65,14 @@ A flowchart was created in this project to plan out the possible functions that 
     - The project was deployed using Heroku.
 - [Lucidchart](https://www.lucidchart.com/pages/)
     - The flowchart was created using Lucidchart.
+- [Python difflib](https://docs.python.org/3/library/difflib.html)
+    - The Python difflib module was used to calculate similarity between the sentence and user input.
+- [Python time](https://docs.python.org/3/library/time.html)
+    - The Python time module was used to calculate the time taken for the user's input.
+- [gspread API](https://docs.gspread.org/en/latest/)
+    - The Python gspread API was used to access Google Sheets
+- [Python Credentials](https://pypi.org/project/credentials/)
+    - Credentials was used to generate a credentials file for Google OAuth
 
 [Back to top!](#timed-type-test)
 
