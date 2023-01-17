@@ -11,6 +11,12 @@
     * [Solved Bugs](#solved-bugs)
 
 ## Automated Testing:
+The code was tested using the [PEP8CI Python Linter](https://pep8ci.herokuapp.com/).
+This was successful as the results show:
+```
+All clear, no errors found
+``` 
+
 [Back to top!](#timed-type-test---testing)
 
 ## Manual Testing:
