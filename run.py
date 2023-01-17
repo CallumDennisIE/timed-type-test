@@ -119,7 +119,7 @@ class Game:
 
         if num_questions >= self.num_rounds:
             for rnd in range(1, self.num_rounds+1):
-                print(f"Round {rnd} / {self.num_rounds}")
+                print(f"\nRound {rnd} / {self.num_rounds}")
 
                 user_question = self.get_question(game_difficulty, rnd)
 
