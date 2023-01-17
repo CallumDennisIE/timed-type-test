@@ -98,16 +98,19 @@ class Game:
         elif game_difficulty == '2':
             self.max_time = 15
 
-        user_question = self.get_question(game_difficulty)
+        for rnd in range(1, self.num_rounds+1):
+            print(f"Round {rnd} / {self.num_rounds}")
 
-        user_input = self.get_input(user_question)
+            user_question = self.get_question(game_difficulty)
 
-        accuracy = self.calculate_accuracy(user_question, user_input)
+            user_input = self.get_input(user_question)
 
-        speed, time_taken, time_left = self.calculate_speed()
+            accuracy = self.calculate_accuracy(user_question, user_input)
 
-        self.output_results(user_question, user_input, time_left, time_taken,
-                            speed, accuracy)
+            speed, time_taken, time_left = self.calculate_speed()
+
+            self.output_results(user_question, user_input, time_left,
+                                time_taken, speed, accuracy)
 
     def add_question(self):
         """Calls all the necessary functions to add a question.
