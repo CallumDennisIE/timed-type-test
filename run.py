@@ -61,6 +61,22 @@ class Game:
 
         return False
 
+    def get_col_length(self, sheet, column):
+        """ Gets the length of the selected column.
+
+        Args:
+            sheet (Class): The Google Sheet, that contaisn the column.
+            column (int): The number of the cuolumn, that will be measured.
+
+        Returns:
+            length (int): The number of rows in the column.
+        """
+
+        print(type(sheet))
+        length = len(sheet.col_values(column))
+
+        return length
+
     def play_menu(self):
         """Displays the menu at game start and asks for user input.
 
@@ -98,19 +114,29 @@ class Game:
         elif game_difficulty == '2':
             self.max_time = 15
 
-        for rnd in range(1, self.num_rounds+1):
-            print(f"Round {rnd} / {self.num_rounds}")
+        # Number of questions is the column length -1, to avoid the column name
+        num_questions = self.get_col_length(SHEET.worksheet('questions'),
+                                            game_difficulty) - 1
 
-            user_question = self.get_question(game_difficulty)
+        if num_questions >= self.num_rounds:
+            for rnd in range(1, self.num_rounds+1):
+                print(f"Round {rnd} / {self.num_rounds}")
 
-            user_input = self.get_input(user_question)
+                user_question = self.get_question(game_difficulty)
 
-            accuracy = self.calculate_accuracy(user_question, user_input)
+                user_input = self.get_input(user_question)
 
-            speed, time_taken, time_left = self.calculate_speed()
+                accuracy = self.calculate_accuracy(user_question, user_input)
 
-            self.output_results(user_question, user_input, time_left,
-                                time_taken, speed, accuracy)
+                speed, time_taken, time_left = self.calculate_speed()
+
+                self.output_results(user_question, user_input, time_left,
+                                    time_taken, speed, accuracy)
+        else:
+            print("Not enough questions on the selcted diffculty")
+            print("Please add more and try again.")
+
+        self.play_menu()
 
     def add_question(self):
         """Calls all the necessary functions to add a question.
@@ -153,8 +179,8 @@ class Game:
         # The column number is equal to the difficulty number value
         column = difficulty
 
-        # Row is length of the selected column + 1, to include the difficulty
-        row = len(questions.col_values(column)) + 1
+        # Row is length of the selected column + 1, to include the column name
+        row = self.get_col_length(questions, column) + 1
 
         questions.update_cell(row, column, question)
 
