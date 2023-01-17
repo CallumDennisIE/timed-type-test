@@ -36,6 +36,15 @@ Timed Type Test is a typing game, aimed at people that want to improve their typ
 [Back to top!](#timed-type-test)
 
 ## Design
+### Flowchart:
+A flowchart was created in this project to plan out the possible functions that would be needed. The functions highlighted in blue are the ones utilised in the final project. As shown, some functionaility in the project was not included due to time constraints, for example adding to a highscore sheet. As the highscore system did not impact the primary gameplay loop, it was not a priority.
+<details>
+<summary>Click for Image: Flowchart</summary>
+
+![Flowchart](/assets/images/readme/flowchart.png)
+
+</details>
+
 [Back to top!](#timed-type-test)
 
 ## Features
@@ -54,6 +63,8 @@ Timed Type Test is a typing game, aimed at people that want to improve their typ
     - The project was developed using Gitpod development environment.
 - [Heroku](https://www.heroku.com/)
     - The project was deployed using Heroku.
+- [Lucidchart](https://www.lucidchart.com/pages/)
+    - The flowchart was created using Lucidchart.
 
 [Back to top!](#timed-type-test)
 
