@@ -20,8 +20,9 @@ class Game:
     The class for each game session that is started.
     """
 
-    def __init__(self, max_time):
-        self.max_time = max_time
+    def __init__(self):
+        self.max_time = 30
+        self.num_rounds = 3
         self.start_time = None
         self.answer_time = None
         self.menu_options = {'1': 'play',
@@ -90,6 +91,12 @@ class Game:
         """Calls all the necessary functions to play the game.
         """
         game_difficulty = self.get_difficulty()
+
+        if game_difficulty == '1':
+            self.max_time = 30
+
+        elif game_difficulty == '2':
+            self.max_time = 15
 
         user_question = self.get_question(game_difficulty)
 
@@ -291,5 +298,5 @@ class Game:
         print(f"\nAccuracy: {accuracy}%")
 
 
-new_game = Game(30)
+new_game = Game()
 new_game.play_menu()
