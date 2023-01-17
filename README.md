@@ -60,5 +60,10 @@
 
 ## Credits
 ### Code
+The following code was taken from the [difflib Python documentation](https://docs.python.org/3/library/difflib.html#sequencematcher-examples):
+
+```
+similarity = SequenceMatcher(lambda x: x == " ", question, answer)
+```
 
 [Back to top!](#timed-type-test)
