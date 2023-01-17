@@ -18,6 +18,7 @@
     * [Media](#media)
 
 ## About
+[View the live project here.](https://timed-type-test.herokuapp.com/)
 
 [Back to top!](#timed-type-test)
 
@@ -43,6 +44,8 @@
     - Project was hosted on GitHub and GitHub Pages hosted the live site.
 - [Gitpod](https://www.gitpod.io/):
     - The project was developed using Gitpod development environment.
+- [Heroku](https://www.heroku.com/)
+    - The project was deployed using Heroku.
 
 [Back to top!](#timed-type-test)
 
