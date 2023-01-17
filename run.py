@@ -26,7 +26,7 @@ class Game:
         self.start_time = None
         self.answer_time = None
         self.menu_options = {'1': 'play',
-                             '2': 'add', 
+                             '2': 'add',
                              '3': 'exit'}
         self.difficulty_options = {'1': 'easy', '2': 'hard'}
 
@@ -229,7 +229,7 @@ class Game:
         # Get the question from the correct difficulty, specified by the user
         # Currently only taking the first non-header value in the column
         question = questions.col_values(user_difficulty)[row]
-       
+
         return question
 
     def get_input(self, question):
@@ -307,7 +307,7 @@ class Game:
 
         return speed, time_taken, time_left
 
-    def output_results(self, question, answer, time_left, time_taken, speed, 
+    def output_results(self, question, answer, time_left, time_taken, speed,
                        accuracy):
         """Output the game results that are passed in.
 
