@@ -3,9 +3,6 @@
 
 ## Contents
 * [Automated Testing](#automated-testing)
-* [Manual Testing](#manual-testing)
-    * [User Stories Testing](#user-stories-testing)
-    * [Full Testing](#full-testing)
 * [Bugs](#bugs)
     * [Known Bugs](#known-bugs)
     * [Solved Bugs](#solved-bugs)
@@ -16,12 +13,6 @@ This was successful as the results show:
 ```
 All clear, no errors found
 ``` 
-
-[Back to top!](#timed-type-test---testing)
-
-## Manual Testing:
-### User Stories Testing
-### Full Testing
 
 [Back to top!](#timed-type-test---testing)
 
