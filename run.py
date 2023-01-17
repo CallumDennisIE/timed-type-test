@@ -121,7 +121,7 @@ class Game:
             for rnd in range(1, self.num_rounds+1):
                 print(f"Round {rnd} / {self.num_rounds}")
 
-                user_question = self.get_question(game_difficulty)
+                user_question = self.get_question(game_difficulty, rnd)
 
                 user_input = self.get_input(user_question)
 
@@ -210,13 +210,14 @@ class Game:
 
         return valid_difficulty
 
-    def get_question(self, user_difficulty):
+    def get_question(self, user_difficulty, row):
         """Get a question from the Google Sheet, based on the difficulty
         selected by the user.
 
         Args:
             user_difficulty (string): The difficulty that the user sets
             the game to.
+            row (int): The row, to get the question from.
 
         Returns:
             question (string): A question from the Google Sheet
@@ -227,7 +228,7 @@ class Game:
 
         # Get the question from the correct difficulty, specified by the user
         # Currently only taking the first non-header value in the column
-        question = questions.col_values(user_difficulty)[1]
+        question = questions.col_values(user_difficulty)[row]
        
         return question
 
