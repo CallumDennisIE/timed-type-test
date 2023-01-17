@@ -72,7 +72,6 @@ class Game:
             length (int): The number of rows in the column.
         """
 
-        print(type(sheet))
         length = len(sheet.col_values(column))
 
         return length
@@ -144,6 +143,8 @@ class Game:
         input_question, input_difficulty = self.get_input_question()
 
         self.add_input_question(input_question, input_difficulty)
+
+        self.play_menu()
 
     def get_input_question(self):
         """Gets the selected difficulty and the question that the user would
