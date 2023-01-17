@@ -271,6 +271,9 @@ class Game:
         """
 
         # Calculate Similarity
+
+        # Code taken from difflib documentation
+        # https://docs.python.org/3/library/difflib.html#sequencematcher-examples
         similarity = SequenceMatcher(lambda x: x == " ", question, answer)
 
         # Get the similarity score as a decimal
