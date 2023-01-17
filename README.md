@@ -24,6 +24,12 @@
 
 ## User Experience
 ### User Stories
+#### User who wants to keep replaying the game:
+- I want to be able to add my own questions in the program.
+#### User who wants to improve their typing skills:
+- I want to be shown how close I was to getting the answer right.
+#### User that wants to compete with friends:
+- I want to be able to know my score.
 
 [Back to top!](#timed-type-test)
 
